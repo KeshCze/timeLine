@@ -1,0 +1,77 @@
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(100% 100% at 50% 49.95%, #4A5466 0%, #262E3B 44%, #1D2430 100%);
+  overflow: hidden;
+}
+
+h1, h2, h3, h4 {
+  color: #F3F4F7;
+  font-family: 'Open Sans',sans-serif;
+}
+
+.row {
+  background: #13171F;
+  -webkit-box-shadow: 0px 0px 19px rgba(0, 0, 0, 0.22);
+          box-shadow: 0px 0px 19px rgba(0, 0, 0, 0.22);
+  font-size: 35px;
+  margin: 2em 0 2em 0;
+  padding-bottom: .8em;
+}
+
+.row .name {
+  font-weight: bold;
+  font-size: 1em;
+  text-align: center;
+  margin: 0;
+  padding: .8em;
+}
+
+.row .timeLine-head {
+  position: relative;
+  height: 7em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.row .timeLine-head::before {
+  content: url(img/arr-left.svg);
+  position: absolute;
+  left: .4em;
+  top: calc(50% - 1.85em);
+  height: 3.7em;
+}
+
+.row .timeLine-head::after {
+  content: url(img/arr-right.svg);
+  position: absolute;
+  right: .4em;
+  top: calc(50% - 1.85em);
+  height: 3.7em;
+}
+
+.row .center {
+  height: 100%;
+  width: 100%;
+  padding: 0 1.3em 0 1.3em;
+}
+
+.row .center .lines {
+  height: 100%;
+}
+
+.row .timeLine-tail {
+  height: 2.5em;
+}
+/*# sourceMappingURL=main.css.map */
