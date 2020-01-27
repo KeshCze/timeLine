@@ -3,10 +3,6 @@
           box-sizing: border-box;
 }
 
-:root {
-  --hours-on-screen: 1;
-}
-
 body {
   width: 100vw;
   height: 100vh;
@@ -75,7 +71,15 @@ h1, h2, h3, h4 {
 }
 
 .row .center .lines {
+  position: relative;
   height: 75%;
+}
+
+.row .center .lines div {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: blue;
 }
 
 .row .center::-webkit-scrollbar {
@@ -91,7 +95,7 @@ h1, h2, h3, h4 {
 
 .row .timeLine-tail div {
   height: 100%;
-  width: calc(95vw / var(--hours-on-screen));
+  width: calc((100vw - 2.8em) / var(--hours-on-screen));
 }
 
 .row .timeLine-tail div:nth-child(2n+1) {

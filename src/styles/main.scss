@@ -3,7 +3,7 @@
 }
 
 :root{
-    --hours-on-screen: 1;
+    //--hours-on-screen: 1;
 }
 
 body{
@@ -68,8 +68,14 @@ h1,h2,h3,h4{
         cursor : grab;
 
         .lines{
+            position: relative;
             height: 75%;
-
+            div{
+                position: absolute;
+                width: 25px;
+                height: 25px;
+                background-color:blue;
+            }
         }
 
     }
@@ -78,12 +84,11 @@ h1,h2,h3,h4{
     }
 
     .timeLine-tail{
-        display: inline-flex;
-        
+        display: inline-flex;     
         height: 20%;
         div{
             height: 100%;
-            width: calc(95vw / var(--hours-on-screen));
+            width: calc((100vw - 2.8em) / var(--hours-on-screen));
         }
         div:nth-child(2n+1){
             background-color: red;
