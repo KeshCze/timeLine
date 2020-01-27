@@ -17,6 +17,5 @@ let timeLine = {
     }
 }
 
-let root = document.documentElement;
-root.style.setProperty('--hours-on-screen',timeLine.daysRendered);
+document.documentElement.style.setProperty('--hours-on-screen',timeLine.daysRendered);
 timeLine.render();
