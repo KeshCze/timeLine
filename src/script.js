@@ -30,6 +30,7 @@ let timeLine = {
     }
 }
 
-document.documentElement.style.setProperty('--hours-on-screen',timeLine.daysRendered);
+document.documentElement.style.setProperty('--hours-on-screen',timeLine.hoursOnScreen);
+document.documentElement.style.setProperty('--daysRendered',timeLine.daysRendered);
 timeLine.render();
 document.querySelector('.center').scroll((document.querySelector('.center').scrollWidth/2.0),0);

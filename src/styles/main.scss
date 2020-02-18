@@ -4,6 +4,7 @@
 
 :root{
     //--hours-on-screen: 1;
+
 }
 
 body{
@@ -69,13 +70,26 @@ h1,h2,h3,h4{
 
         .lines{
             position: relative;
+            display: inline-grid;
             height: 75%;
-            div{
-                position: absolute;
-                width: 25px;
-                height: 25px;
-                background-color:blue;
+            width: calc(((100vw - 2.8em) / var(--hours-on-screen))*(24*var(--daysRendered)));
+            // div[class!="line-wrap"],div[class!="line"]{
+            //     position: absolute;
+            //     width: 25px;
+            //     height: 25px;
+            //     background-color:blue;
+            // }
+            .line-wrap{
+                text-align: center;
+                margin: 20px;
+                .line{
+                    padding: 0 10px;
+                    border-top: 1px solid #000;
+                    height: 1px;
+                    line-height: 0.1em;
+                }
             }
+
         }
 
     }
