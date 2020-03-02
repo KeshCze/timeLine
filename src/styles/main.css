@@ -7,7 +7,7 @@ body {
   width: 100vw;
   height: 100vh;
   margin: 0;
-  padding: 0;
+  padding: 2em 0;
   background: radial-gradient(100% 100% at 50% 49.95%, #4A5466 0%, #262E3B 44%, #1D2430 100%);
   overflow: hidden;
 }
@@ -22,7 +22,7 @@ h1, h2, h3, h4 {
   -webkit-box-shadow: 0px 0px 19px rgba(0, 0, 0, 0.22);
           box-shadow: 0px 0px 19px rgba(0, 0, 0, 0.22);
   font-size: 35px;
-  margin: 2em 0 2em 0;
+  margin: 0 0 2em 0;
   padding-bottom: .8em;
 }
 
@@ -34,7 +34,7 @@ h1, h2, h3, h4 {
   padding: .8em;
 }
 
-.row .timeLine-head {
+.row .timeLine {
   position: relative;
   height: 6em;
   display: -webkit-box;
@@ -45,7 +45,7 @@ h1, h2, h3, h4 {
           justify-content: center;
 }
 
-.row .timeLine-head::before {
+.row .timeLine::before {
   content: url(img/arr-left.svg);
   position: absolute;
   left: .4em;
@@ -53,7 +53,7 @@ h1, h2, h3, h4 {
   height: 3.7em;
 }
 
-.row .timeLine-head::after {
+.row .timeLine::after {
   content: url(img/arr-right.svg);
   position: absolute;
   right: .4em;
@@ -61,7 +61,8 @@ h1, h2, h3, h4 {
   height: 3.7em;
 }
 
-.row .center {
+.row .head {
+  position: relative;
   height: 100%;
   width: calc(100% - 2.8em);
   overflow-x: auto;
@@ -70,47 +71,53 @@ h1, h2, h3, h4 {
   cursor: grab;
 }
 
-.row .center .lines {
-  position: relative;
-  display: -ms-inline-grid;
-  display: inline-grid;
+.row .head .lines {
   height: 75%;
   width: calc(((100vw - 2.8em) / var(--hours-on-screen))*(24*var(--daysRendered)));
 }
 
-.row .center .lines .line-wrap {
+.row .head .lines .line-wrap {
+  width: 100%;
+  height: 25%;
   text-align: center;
-  margin: 20px;
+  display: block;
+  position: relative;
 }
 
-.row .center .lines .line-wrap .line {
-  padding: 0 10px;
-  border-top: 1px solid #000;
+.row .head .lines .line-wrap hr {
+  position: absolute;
+  width: 100%;
   height: 1px;
-  line-height: 0.1em;
+  margin: 0;
+  padding: 0;
+  top: 50%;
+  border-color: rgba(47, 59, 77, 0.46);
+  background-color: rgba(47, 59, 77, 0.46);
 }
 
-.row .center::-webkit-scrollbar {
+.row .head::-webkit-scrollbar {
   display: none;
 }
 
-.row .timeLine-tail {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  height: 20%;
+.row .tail {
+  height: 25%;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
 }
 
-.row .timeLine-tail div {
+.row .tail div {
+  display: block;
+  float: left;
   height: 100%;
   width: calc((100vw - 2.8em) / var(--hours-on-screen));
 }
 
-.row .timeLine-tail div:nth-child(2n+1) {
+.row .tail div:nth-child(2n+1) {
   background-color: red;
 }
 
-.row .timeLine-tail div:nth-child(2n) {
+.row .tail div:nth-child(2n) {
   background-color: green;
 }
 /*# sourceMappingURL=main.css.map */
