@@ -1,2 +1,2 @@
 # timeLine
-time line of a worker used in Siemens
+Timeline of a worker activities used in Siemens
