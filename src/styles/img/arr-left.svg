@@ -1,3 +1,5 @@
-<svg width ="28" height="126" viewBox="0 0 28 126" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path id="&#197;&#161;ipka vlevo" d="M26.6106 0.9993L1.07628 63.4403L26.763 125.499" stroke="#616161" stroke-opacity="0.46"/>
+<svg xmlns="http://www.w3.org/2000/svg">
+<symbol id="arr-left" width ="28" height="126" viewBox="0 0 28 126" fill="none">
+    <path class="arrow" id="vlevo" d="M26.6106 0.9993L1.07628 63.4403L26.763 125.499" stroke-opacity="0.46"/>
+</symbol>
 </svg>

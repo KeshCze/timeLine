@@ -1,3 +1,5 @@
-<svg width ="28" height="126" viewBox="0 0 28 126" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M1.17073 125.131L26.7814 62.8804L1.17073 0.630124" stroke="#616161" stroke-opacity="0.46"/>
+<svg xmlns="http://www.w3.org/2000/svg">
+    <symbol id="arr-right" width ="28" height="126" viewBox="0 0 28 126" fill="none" >
+        <path id="vpravo" class="arrow" d="M1.17073 125.131L26.7814 62.8804L1.17073 0.630124"  stroke-opacity="0.46"/>
+    </symbol>
 </svg>

@@ -3,6 +3,10 @@
           box-sizing: border-box;
 }
 
+:root {
+  --row-width: calc(100vw);
+}
+
 body {
   width: 100vw;
   height: 100vh;
@@ -24,9 +28,10 @@ h1, h2, h3, h4 {
   font-size: 35px;
   margin: 0 0 2em 0;
   padding-bottom: .8em;
+  width: var(--row-width);
 }
 
-.row .name {
+.row h1 {
   font-weight: bold;
   font-size: 1em;
   text-align: center;
@@ -45,20 +50,38 @@ h1, h2, h3, h4 {
           justify-content: center;
 }
 
-.row .timeLine::before {
-  content: url(img/arr-left.svg);
+.row .timeLine .arrow-left {
   position: absolute;
   left: .4em;
   top: calc(50% - 1.85em);
   height: 3.7em;
 }
 
-.row .timeLine::after {
-  content: url(img/arr-right.svg);
+.row .timeLine .arrow-left .arrow {
+  stroke: #616161;
+}
+
+.row .timeLine .arrow-left .arrow-light {
+  stroke: #F3F4F7;
+}
+
+.row .timeLine .arrow-right {
   position: absolute;
   right: .4em;
   top: calc(50% - 1.85em);
   height: 3.7em;
+}
+
+.row .timeLine .arrow-right svg {
+  width: 0.9em;
+}
+
+.row .timeLine .arrow-right svg .arrow {
+  stroke: #616161;
+}
+
+.row .timeLine .arrow-right svg .arrow-light {
+  stroke: #F3F4F7;
 }
 
 .row .head {
@@ -73,7 +96,7 @@ h1, h2, h3, h4 {
 
 .row .head .lines {
   height: 75%;
-  width: calc(((100vw - 2.8em) / var(--hours-on-screen))*(24*var(--daysRendered)));
+  width: calc(((var(--row-width) - 2.8em) / var(--hours-on-screen))*(24*var(--daysRendered)));
 }
 
 .row .head .lines .line-wrap {
@@ -95,15 +118,20 @@ h1, h2, h3, h4 {
   background-color: rgba(47, 59, 77, 0.46);
 }
 
+.row .head .lines .line-wrap > div {
+  position: absolute;
+  width: 1px;
+  height: 1.5em;
+  background-color: blue;
+}
+
 .row .head::-webkit-scrollbar {
   display: none;
 }
 
 .row .tail {
   height: 25%;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
+  width: calc(((var(--row-width) - 2.8em) / var(--hours-on-screen))*(24*var(--daysRendered)));
 }
 
 .row .tail div {
@@ -111,11 +139,10 @@ h1, h2, h3, h4 {
   position: relative;
   float: left;
   height: 100%;
-  margin: -1px;
 }
 
 .row .tail div svg {
-  width: calc((100vw - 2.8em) / var(--hours-on-screen));
+  width: calc(((var(--row-width) - 2.8em) / var(--hours-on-screen)));
   height: 60%;
 }
 

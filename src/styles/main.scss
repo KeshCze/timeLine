@@ -1,9 +1,12 @@
+// ================================
+// General styles
+// ================================
 *,*::before,*::after{
     box-sizing: border-box;
 }
 
 :root{
-
+    --row-width: calc(100vw);
 }
 
 body{
@@ -21,14 +24,22 @@ h1,h2,h3,h4{
     font-family: 'Open Sans',sans-serif;
 }
 
+
+// ================================
+// Row
+// ================================
 .row{
     background: #13171F;
     box-shadow: 0px 0px 19px rgba(0, 0, 0, 0.22);
     font-size: 35px;
     margin: 0 0 2em 0;
     padding-bottom: .8em;
+    width: var(--row-width);
 
-    .name{
+    // ================================
+    // Header of a row
+    // ================================
+    h1{
         font-weight: bold;
         font-size: 1em;
         text-align: center;
@@ -36,33 +47,52 @@ h1,h2,h3,h4{
         padding: .8em;
     }
 
+    // ================================
+    // Main timeline block with arrows
+    // ================================
     .timeLine{
         position: relative;
         height: 8em;
         display: flex;
         justify-content: center;
 
-        &::before{
-            content: url(img/arr-left.svg);
+        .arrow-left{
             position: absolute;
             left: .4em;
             top: calc(50% - 1.85em);
             height: 3.7em;
+            .arrow{
+                stroke: #616161;
+            }
+            .arrow-light{
+                stroke: #F3F4F7;
+            }
         }
 
-        &::after{
-            content: url(img/arr-right.svg);
+        .arrow-right{
             position: absolute;
             right: .4em;
             top: calc(50% - 1.85em);
             height: 3.7em;
+            svg{
+                width: 0.9em;
+                .arrow{
+                    stroke: #616161;
+                }
+                .arrow-light{
+                    stroke: #F3F4F7;
+                }
+            }
+            
+
         }
+
+        
     }
 
-    
-    
-
-
+    // ================================
+    // Head of timeline
+    // ================================
     .head{
         position: relative;
         height: 100%;
@@ -73,7 +103,7 @@ h1,h2,h3,h4{
 
         .lines{
             height: 75%;
-            width: calc(((100vw - 2.8em) / var(--hours-on-screen))*(24*var(--daysRendered)));
+            width: calc(((var(--row-width) - 2.8em) / var(--hours-on-screen))*(24*var(--daysRendered)));
 
             .line-wrap{
                 width: 100%;
@@ -92,24 +122,35 @@ h1,h2,h3,h4{
                     border-color: rgba(47, 59, 77, 0.46);
                     background-color: rgba(47, 59, 77, 0.46);
                 }
+
+                &>div{
+                    position: absolute;
+                    width: 1px;
+                    height: 1.5em;
+                    background-color: blue;
+                }
+
             }
         }
-    }
-    .head::-webkit-scrollbar{
-        display: none;
+        &::-webkit-scrollbar{
+            display: none;
+        }
     }
 
+    // ================================
+    // Tail of timeline
+    // ================================
     .tail{          
         height: 25%;
-        width: max-content;        
+        width: calc(((var(--row-width) - 2.8em) / var(--hours-on-screen))*(24*var(--daysRendered)));        
         div{
             display: block;
             position: relative;
             float: left;
-            height: 100%;
-            margin: -1px;
+            height: 100%;          
+
             svg{
-                width: calc((100vw - 2.8em) / var(--hours-on-screen));
+                width: calc(((var(--row-width) - 2.8em) / var(--hours-on-screen))); 
                 height: 60%;     
                 .fix-line {
                     stroke-width: 0.3%;
