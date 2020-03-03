@@ -36,7 +36,7 @@ h1, h2, h3, h4 {
 
 .row .timeLine {
   position: relative;
-  height: 6em;
+  height: 8em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -108,16 +108,29 @@ h1, h2, h3, h4 {
 
 .row .tail div {
   display: block;
+  position: relative;
   float: left;
   height: 100%;
+  margin: -1px;
+}
+
+.row .tail div svg {
   width: calc((100vw - 2.8em) / var(--hours-on-screen));
+  height: 60%;
 }
 
-.row .tail div:nth-child(2n+1) {
-  background-color: red;
+.row .tail div svg .fix-line {
+  stroke-width: 0.3%;
 }
 
-.row .tail div:nth-child(2n) {
-  background-color: green;
+.row .tail div::before {
+  content: attr(data-content);
+  color: #F3F4F7;
+  position: absolute;
+  font-size: 0.4em;
+  bottom: 0.4em;
+  left: -0.4em;
+  width: .7em;
+  height: .7em;
 }
 /*# sourceMappingURL=main.css.map */

@@ -38,25 +38,29 @@ h1,h2,h3,h4{
 
     .timeLine{
         position: relative;
-        height: 6em;
+        height: 8em;
         display: flex;
         justify-content: center;
+
+        &::before{
+            content: url(img/arr-left.svg);
+            position: absolute;
+            left: .4em;
+            top: calc(50% - 1.85em);
+            height: 3.7em;
+        }
+
+        &::after{
+            content: url(img/arr-right.svg);
+            position: absolute;
+            right: .4em;
+            top: calc(50% - 1.85em);
+            height: 3.7em;
+        }
     }
 
-    .timeLine::before{
-        content: url(img/arr-left.svg);
-        position: absolute;
-        left: .4em;
-        top: calc(50% - 1.85em);
-        height: 3.7em;
-    }
-    .timeLine::after{
-        content: url(img/arr-right.svg);
-        position: absolute;
-        right: .4em;
-        top: calc(50% - 1.85em);
-        height: 3.7em;
-    }
+    
+    
 
 
     .head{
@@ -100,15 +104,27 @@ h1,h2,h3,h4{
         width: max-content;        
         div{
             display: block;
+            position: relative;
             float: left;
             height: 100%;
-            width: calc((100vw - 2.8em) / var(--hours-on-screen));
+            margin: -1px;
+            svg{
+                width: calc((100vw - 2.8em) / var(--hours-on-screen));
+                height: 60%;     
+                .fix-line {
+                    stroke-width: 0.3%;
+                }           
+            }
+            &::before{
+                content: attr(data-content);
+                color: #F3F4F7;
+                position: absolute;
+                font-size: 0.4em;
+                bottom: 0.4em;
+                left: -0.4em;
+                width: .7em;
+                height: .7em;
+            }
         }
-        div:nth-child(2n+1){
-            background-color: red;
-        }
-        div:nth-child(2n){
-            background-color: green;
-        }
-    }
+    }    
 }
