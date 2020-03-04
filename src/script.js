@@ -2,12 +2,13 @@
 let data = [
     {Action : 301, ValidFrom : "January 27, 2020 11:00:00", ValidTo : "January 27, 2020 18:00:00", Pernr : "89065325", Name : "Lukáš Babinec"},
     {Action : 500, ValidFrom : "January 27, 2020 11:00:00", ValidTo : "January 27, 2020 11:30:00", Pernr : "89065325", Name : "Lukáš Babinec"},
+    {Action : 500, ValidFrom : "January 27, 2020 14:00:00", ValidTo : "January 27, 2020 14:30:00", Pernr : "89065325", Name : "Lukáš Babinec"},
     {Action : 304, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Pernr : "89065325", Name : "Lukáš Babinec"},
-    {Action : 402, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Index : 0,Pernr : "89065325", Name : "Lukáš Babinec"},
-    {Action : 402, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Index : 1,Pernr : "89065325", Name : "Lukáš Babinec"},
-    
-    // {Action : 411, TimeStamp : "January 27, 2020 13:00:00", Pernr : "89065325", Name : "Lukáš Babinec"},
-    // {Action : 413, TimeStamp : "January 27, 2020 14:00:00", Pernr : "89065325", Name : "Lukáš Babinec"},
+    {Action : 402, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Index : 0,Pernr : "89065325", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1"},
+    {Action : 402, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Index : 1,Pernr : "89065325", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1"},
+    {Action : 402, ValidFrom : "January 27, 2020 13:35:00", ValidTo : "January 27, 2020 13:50:00", Index : 1,Pernr : "89065325", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1"},
+    {Action : 402, ValidFrom : "January 27, 2020 16:35:00", ValidTo : "January 27, 2020 16:50:00", Index : 1,Pernr : "89065325", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1"},
+        
 ];
 
 let timeLine = {

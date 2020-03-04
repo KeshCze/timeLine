@@ -42,9 +42,10 @@ h1,h2,h3,h4{
     h1{
         font-weight: bold;
         font-size: 1em;
-        text-align: center;
+        text-align: left;
         margin:0;
-        padding: .8em;
+        padding: .6em;
+        margin-left:1.6em;
     }
 
     // ================================
@@ -130,7 +131,6 @@ h1,h2,h3,h4{
                 }                
             }
 
-
             .pause > div{
                 background-image: linear-gradient(to right top, #624d17, #685115, #6e5413, #745811, #7a5c0e);
             }
@@ -158,7 +158,7 @@ h1,h2,h3,h4{
             position: relative;
             float: left;
             height: 100%;          
-            width: calc(((var(--row-width) - 2.8em) / var(--hours-on-screen))); 
+            width: calc((var(--row-width) - 2.8em) / var(--hours-on-screen)); 
             
             .l{
                 margin: 0;
@@ -206,23 +206,16 @@ h1,h2,h3,h4{
                 left: 100%;
                 top:2px;
             }
-
-            svg{
-                height: 60%; 
-                width: 100%;    
-                .fix-line {
-                    stroke-width: 0.3%;
-                }           
-            }
+            
             &::before{
                 content: attr(data-content);
                 color: #F3F4F7;
                 position: absolute;
-                font-size: 0.4em;
-                bottom: 0.4em;
+                font-size: .9em;
+                bottom: .2em;
                 left: -0.4em;
-                width: .7em;
-                height: .7em;
+                width: .9em;
+                height: .9em;
             }            
         }
     }    

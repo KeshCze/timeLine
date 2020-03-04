@@ -34,9 +34,10 @@ h1, h2, h3, h4 {
 .row h1 {
   font-weight: bold;
   font-size: 1em;
-  text-align: center;
+  text-align: left;
   margin: 0;
-  padding: .8em;
+  padding: .6em;
+  margin-left: 1.6em;
 }
 
 .row .timeLine {
@@ -153,7 +154,7 @@ h1, h2, h3, h4 {
   position: relative;
   float: left;
   height: 100%;
-  width: calc(((var(--row-width) - 2.8em) / var(--hours-on-screen)));
+  width: calc((var(--row-width) - 2.8em) / var(--hours-on-screen));
 }
 
 .row .tail div .l {
@@ -202,23 +203,14 @@ h1, h2, h3, h4 {
   top: 2px;
 }
 
-.row .tail div svg {
-  height: 60%;
-  width: 100%;
-}
-
-.row .tail div svg .fix-line {
-  stroke-width: 0.3%;
-}
-
 .row .tail div::before {
   content: attr(data-content);
   color: #F3F4F7;
   position: absolute;
-  font-size: 0.4em;
-  bottom: 0.4em;
+  font-size: .9em;
+  bottom: .2em;
   left: -0.4em;
-  width: .7em;
-  height: .7em;
+  width: .9em;
+  height: .9em;
 }
 /*# sourceMappingURL=main.css.map */
