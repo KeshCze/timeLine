@@ -148,10 +148,58 @@ h1,h2,h3,h4{
             position: relative;
             float: left;
             height: 100%;          
+            width: calc(((var(--row-width) - 2.8em) / var(--hours-on-screen))); 
+            
+            .l{
+                margin: 0;
+                width: 1px;
+                position: absolute;
+                top:0;
+                border-color: rgba(140, 140, 140, 0.38);
+                background-color: rgba(140, 140, 140, 0.38);
+            }
+
+            .l0{
+                width: 100%;
+                left: 0;
+                height: 1px;
+                right: 0;
+            }
+
+            .l1{
+                top:2px; 
+                height: 50%;                
+                left: 0px;
+            }
+
+            .l2{
+                height: 20%;                
+                left: 25%;
+                top:2px;
+            }
+
+            .l3{
+                height: 30%;                
+                left: 50%;
+                top:2px;
+            }
+
+            .l4{
+
+                height: 20%;           
+                left: 75%;
+                top:2px;
+            }
+
+            .l4{
+                height: 50%;                
+                left: 100%;
+                top:2px;
+            }
 
             svg{
-                width: calc(((var(--row-width) - 2.8em) / var(--hours-on-screen))); 
-                height: 60%;     
+                height: 60%; 
+                width: 100%;    
                 .fix-line {
                     stroke-width: 0.3%;
                 }           
@@ -165,7 +213,7 @@ h1,h2,h3,h4{
                 left: -0.4em;
                 width: .7em;
                 height: .7em;
-            }
+            }            
         }
     }    
 }

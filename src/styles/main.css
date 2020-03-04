@@ -139,11 +139,58 @@ h1, h2, h3, h4 {
   position: relative;
   float: left;
   height: 100%;
+  width: calc(((var(--row-width) - 2.8em) / var(--hours-on-screen)));
+}
+
+.row .tail div .l {
+  margin: 0;
+  width: 1px;
+  position: absolute;
+  top: 0;
+  border-color: rgba(140, 140, 140, 0.38);
+  background-color: rgba(140, 140, 140, 0.38);
+}
+
+.row .tail div .l0 {
+  width: 100%;
+  left: 0;
+  height: 1px;
+  right: 0;
+}
+
+.row .tail div .l1 {
+  top: 2px;
+  height: 50%;
+  left: 0px;
+}
+
+.row .tail div .l2 {
+  height: 20%;
+  left: 25%;
+  top: 2px;
+}
+
+.row .tail div .l3 {
+  height: 30%;
+  left: 50%;
+  top: 2px;
+}
+
+.row .tail div .l4 {
+  height: 20%;
+  left: 75%;
+  top: 2px;
+}
+
+.row .tail div .l4 {
+  height: 50%;
+  left: 100%;
+  top: 2px;
 }
 
 .row .tail div svg {
-  width: calc(((var(--row-width) - 2.8em) / var(--hours-on-screen)));
   height: 60%;
+  width: 100%;
 }
 
 .row .tail div svg .fix-line {

@@ -8,21 +8,20 @@ let data = [
 
 let timeLine = {
     daysRendered: 7,
-    hoursOnScreen: 6,
+    hoursOnScreen: 1,
     render(){ 
         // ================================
         // Drawing a tail of timeline
         // ================================ 
         for (let index = 0; index < this.daysRendered*24; index++) {
             let element = document.createElement("div");
-            let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            let useElem = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-            useElem.classList.add('fix-line');
-            
-            useElem.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '/src/styles/img/time-line.svg#time-line');
-            svg.appendChild(useElem);
-            element.appendChild(svg);
-            
+            for(let i = 0; i < 6;i++)
+            {
+                let hr = document.createElement("hr");
+                hr.classList.add("l");
+                hr.classList.add(`l${i}`);
+                element.appendChild(hr);
+            }    
             element.dataset.content = index % 24;
             document.querySelector('.tail').appendChild(element);
         }
