@@ -120,9 +120,23 @@ h1, h2, h3, h4 {
 
 .row .head .lines .line-wrap > div {
   position: absolute;
-  width: 1px;
-  height: 1.5em;
-  background-color: blue;
+  height: .7em;
+  top: .44em;
+}
+
+.row .head .lines .pause > div {
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#624d17), color-stop(#685115), color-stop(#6e5413), color-stop(#745811), to(#7a5c0e));
+  background-image: linear-gradient(to right top, #624d17, #685115, #6e5413, #745811, #7a5c0e);
+}
+
+.row .head .lines .login > div {
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#178322), color-stop(#398822), color-stop(#508d24), color-stop(#639127), to(#75962c));
+  background-image: linear-gradient(to right top, #178322, #398822, #508d24, #639127, #75962c);
+}
+
+.row .head .lines .pos-0 > div, .row .head .lines .pos-1 > div {
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#25228b), color-stop(#1f1d92), color-stop(#191699), color-stop(#110da0), to(#0500a6));
+  background-image: linear-gradient(to right top, #25228b, #1f1d92, #191699, #110da0, #0500a6);
 }
 
 .row .head::-webkit-scrollbar {
@@ -182,7 +196,7 @@ h1, h2, h3, h4 {
   top: 2px;
 }
 
-.row .tail div .l4 {
+.row .tail div .l5 {
   height: 50%;
   left: 100%;
   top: 2px;

@@ -124,13 +124,23 @@ h1,h2,h3,h4{
                 }
 
                 &>div{
-                    position: absolute;
-                    width: 1px;
-                    height: 1.5em;
-                    background-color: blue;
-                }
-
+                    position: absolute;                    
+                    height: .7em;
+                    top: .44em;
+                }                
             }
+
+
+            .pause > div{
+                background-image: linear-gradient(to right top, #624d17, #685115, #6e5413, #745811, #7a5c0e);
+            }
+            .login > div{
+                background-image: linear-gradient(to right top, #178322, #398822, #508d24, #639127, #75962c);
+            }
+            .pos-0 > div,.pos-1 > div{
+                background-image: linear-gradient(to right top, #25228b, #1f1d92, #191699, #110da0, #0500a6);
+            }
+            
         }
         &::-webkit-scrollbar{
             display: none;
@@ -191,7 +201,7 @@ h1,h2,h3,h4{
                 top:2px;
             }
 
-            .l4{
+            .l5{
                 height: 50%;                
                 left: 100%;
                 top:2px;
