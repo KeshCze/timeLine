@@ -57,6 +57,24 @@ h1,h2,h3,h4{
         display: flex;
         justify-content: center;
 
+        hr.pointer{
+            width: 1px;
+            height: calc(8em - 25%);
+            left: 50%;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            border: 1px dashed #ffffff2e;
+        }
+
+        div.pointer-text{
+            font-size: 0.4em;
+            color: #a2a2a2;
+            position: absolute;
+            top:-10%;
+            font-family: 'Open Sans',sans-serif;
+        }
+
         .arrow-left{
             position: absolute;
             left: .4em;
@@ -128,6 +146,15 @@ h1,h2,h3,h4{
                     position: absolute;                    
                     height: .7em;
                     top: .44em;
+                    align-items: center;
+                    display: flex;
+                    div{
+                        font-size: .4em;
+                        height: auto;
+                        width: 100%;
+                        font-family: 'Open Sans',sans-serif;
+                        color: #F3F4F7;                        
+                    }
                 }                
             }
 
@@ -211,11 +238,13 @@ h1,h2,h3,h4{
                 content: attr(data-content);
                 color: #F3F4F7;
                 position: absolute;
-                font-size: .9em;
-                bottom: .2em;
+                font-size: .7em;
+                bottom: .45em;
                 left: -0.4em;
                 width: .9em;
+                text-align: center;
                 height: .9em;
+                font-family: 'Open Sans',sans-serif;
             }            
         }
     }    
