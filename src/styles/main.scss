@@ -101,9 +101,7 @@ h1,h2,h3,h4{
                 .arrow-light{
                     stroke: #F3F4F7;
                 }
-            }
-            
-
+            }            
         }
 
         
@@ -146,14 +144,30 @@ h1,h2,h3,h4{
                     position: absolute;                    
                     height: .7em;
                     top: .44em;
-                    align-items: center;
-                    display: flex;
                     div{
-                        font-size: .4em;
-                        height: auto;
+                        align-items: center;
+                        justify-content: center;
                         width: 100%;
-                        font-family: 'Open Sans',sans-serif;
-                        color: #F3F4F7;                        
+                        height: 100%;
+                        display: flex;
+                        cursor: help;
+                        position: relative;
+                        
+                        div.tooltip-order-text{
+                            font-size: .4em;
+                            height: auto;
+                            font-family: 'Open Sans',sans-serif;
+                            text-align: center;
+                            color: #F3F4F7;                        
+                        }
+
+                        .tooltip{
+                            position: absolute;
+                            width: 3em;
+                            height: 2.5em;
+                            font-size: .4em;
+                            top: .1em;
+                        }
                     }
                 }                
             }
@@ -238,12 +252,12 @@ h1,h2,h3,h4{
                 content: attr(data-content);
                 color: #F3F4F7;
                 position: absolute;
-                font-size: .7em;
-                bottom: .45em;
+                font-size: .5em;
+                bottom: 1em;
                 left: -0.4em;
-                width: .9em;
+                width: .7em;
                 text-align: center;
-                height: .9em;
+                height: .7em;
                 font-family: 'Open Sans',sans-serif;
             }            
         }

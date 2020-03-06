@@ -1,19 +1,18 @@
 let container = document.getElementById('container');
 let dataPeople =[
-    {Pernr : "89065325", Name : "Lukáš Babinec", lastScroll : 0},
+    {Pernr : "11111111", Name : "Lukáš Babinec", lastScroll : 0},
 ];
 
 
 let dummyPersonData = [
-    {Action : 301, ValidFrom : "January 27, 2020 11:00:00", ValidTo : "January 27, 2020 18:00:00", Pernr : "89065325", Name : "Lukáš Babinec"},
-    {Action : 500, ValidFrom : "January 27, 2020 11:00:00", ValidTo : "January 27, 2020 11:30:00", Pernr : "89065325", Name : "Lukáš Babinec"},
-    {Action : 500, ValidFrom : "January 27, 2020 14:00:00", ValidTo : "January 27, 2020 14:30:00", Pernr : "89065325", Name : "Lukáš Babinec"},
-    {Action : 304, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Pernr : "89065325", Name : "Lukáš Babinec"},
-    {Action : 402, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Index : 0,Pernr : "89065325", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1"},
-    {Action : 402, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Index : 1,Pernr : "89065325", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1"},
-    {Action : 402, ValidFrom : "January 27, 2020 13:35:00", ValidTo : "January 27, 2020 13:50:00", Index : 1,Pernr : "89065325", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1"},
-    {Action : 402, ValidFrom : "January 27, 2020 16:35:00", ValidTo : "January 27, 2020 16:50:00", Index : 1,Pernr : "89065325", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1"},
-        
+    {Id: 0,Action : 301, ValidFrom : "January 27, 2020 11:00:00", ValidTo : "January 27, 2020 18:00:00", Pernr : "11111111", Name : "Lukáš Babinec"},
+    {Id: 1,Action : 500, ValidFrom : "January 27, 2020 11:00:00", ValidTo : "January 27, 2020 11:30:00", Pernr : "11111111", Name : "Lukáš Babinec"},
+    {Id: 2,Action : 500, ValidFrom : "January 27, 2020 14:00:00", ValidTo : "January 27, 2020 14:30:00", Pernr : "11111111", Name : "Lukáš Babinec"},
+    {Id: 3,Action : 304, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Pernr : "11111111", Name : "Lukáš Babinec"},
+    {Id: 4,Action : 402, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Index : 0,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1"},
+    {Id: 5,Action : 402, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Index : 1,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1"},
+    {Id: 6,Action : 402, ValidFrom : "January 27, 2020 13:35:00", ValidTo : "January 27, 2020 13:50:00", Index : 1,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1"},
+    {Id: 7,Action : 402, ValidFrom : "January 27, 2020 16:35:00", ValidTo : "January 27, 2020 16:50:00", Index : 1,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1"},        
 ];
 
 
@@ -22,8 +21,11 @@ let timeLine = {
     hoursOnScreen: 5,
     minWidthToDisplayOrderNumber: 100,
     renderWhole(){
+        // Pass hours property to the css styles
         document.documentElement.style.setProperty('--hours-on-screen',timeLine.hoursOnScreen);
+        // Clean up the container
         container.innerHTML = "";
+
         dataPeople.forEach((d) => {
             // Render row            
             let rowString = this.returnRow(d);
@@ -34,6 +36,8 @@ let timeLine = {
             // Render timeline for row
             this.renderTimeline(d.Pernr,dummyPersonData);
         });
+
+        // For new rendered DOMs, reset the dragscroll instance
         dragscroll.reset();        
     },
     renderTimeline(pernr,data){ 
@@ -80,28 +84,38 @@ let timeLine = {
             element.style.setProperty('left',diffInSecondFromBeginingOfTimeline*sizeOfOneSecOnTimeLine + 'px');
             element.style.setProperty('width',actionTimespan*sizeOfOneSecOnTimeLine + 'px');
 
-
+            // Add id reference to the dataset record
+            let subElement = document.createElement('div');
+            subElement.dataset.id = el.Id;
+            
             // Determine to which line to put the action log
             switch (el.Action) {
-                case 301: 
+                case 301:
+                    element.appendChild(subElement); 
                     document.querySelector(`.row[data-pernr="${pernr}"] .login`).appendChild(element);                                
                     break;
                 case 304:
-                case 500: 
+                case 500:
+                    element.appendChild(subElement); 
                     document.querySelector(`.row[data-pernr="${pernr}"] .pause`).appendChild(element);                                
                     break;
                 case 402:
-                    // Add order number text
                     let OrderNumberText = document.createElement('div');
+                    OrderNumberText.classList.add('tooltip-order-text');
+                    // Add order number text
                     OrderNumberText.innerText = `${el.OrderNumber} / ${('0' + el.Piece).slice(-2)}`;
                     // If action element is too small hide the order number label
                     if(actionTimespan*sizeOfOneSecOnTimeLine < this.minWidthToDisplayOrderNumber)
                     {
                         OrderNumberText.style.setProperty('display','none');
                     }
-                    element.appendChild(OrderNumberText);
+
+                    subElement.appendChild(OrderNumberText);
+                    element.appendChild(subElement);
+
                     // Apped order to the correct row
                     if(el.Index === 0){
+
                         document.querySelector(`.row[data-pernr="${pernr}"] .pos-0`).appendChild(element);
                     }
                     else{
@@ -112,6 +126,14 @@ let timeLine = {
                     console.error("Unknown action",el);
                     break;
             }
+            
+            
+                    
+            // Click event
+            subElement.addEventListener('click',(el) => {
+                this.showToolTip(el.target.dataset.id);
+            });
+            
         });
 
         /// Scroll to the center of the timeline
@@ -181,6 +203,14 @@ let timeLine = {
         </div>
         `
     },
+    templateTooltip301(dataRecord){
+        return`
+        <div class="tooltip">
+            <h4>Uživatel přihlášen</h4>
+            <div>${dataRecord.ValidFrom} - ${dataRecord.ValidTo}</div>
+        </div>
+        `;
+    },
     setUpControlls(){
         let el = document.getElementById('controll');
         el.querySelector('.percentage').innerText = `${((12.5)* this.hoursOnScreen)} %`
@@ -198,6 +228,22 @@ let timeLine = {
                 document.querySelector('.percentage').innerText = `${((12.5)* this.hoursOnScreen)} %`
             }
         });     
+    },
+    showToolTip(id){
+        id = Number(id);
+        let dataRecord = dummyPersonData.find(x => x.Id === id);
+        let template;
+        switch (dataRecord.Action) {
+            case 301:
+                template = this.templateTooltip301(dataRecord);
+                break;
+        
+            default:
+                console.error("Non-existing tootip template",id,dataRecord);
+                break;
+        }
+
+        document.querySelector(`div[data-id="${id}"]`).innerHTML = template;
     }
 }
 
@@ -243,6 +289,5 @@ window.addEventListener("resize",() => {
 
 // Help functions
 function capitalizeFLetter(word) { 
-    var string = word;
-    return string.replace(/^./, string[0].toUpperCase()); 
+    return word.replace(/^./, word[0].toUpperCase()); 
 };
