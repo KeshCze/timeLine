@@ -131,7 +131,7 @@ let timeLine = {
                     
             // Click event
             subElement.addEventListener('click',(el) => {
-                this.showToolTip(el.target.dataset.id);
+                this.showToolTip(el.currentTarget.dataset.id);
             });
             
         });
