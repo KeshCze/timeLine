@@ -1,4 +1,4 @@
-let container = document.querySelector('body');
+let container = document.getElementById('container');
 let dataPeople =[
     {Pernr : "89065325", Name : "Lukáš Babinec", lastScroll : 0},
 ];
@@ -19,9 +19,11 @@ let dummyPersonData = [
 
 let timeLine = {
     daysRendered: 7,
-    hoursOnScreen: 4,
+    hoursOnScreen: 5,
     minWidthToDisplayOrderNumber: 100,
-    renderRows(){
+    renderWhole(){
+        document.documentElement.style.setProperty('--hours-on-screen',timeLine.hoursOnScreen);
+        container.innerHTML = "";
         dataPeople.forEach((d) => {
             // Render row            
             let rowString = this.returnRow(d);
@@ -32,7 +34,7 @@ let timeLine = {
             // Render timeline for row
             this.renderTimeline(d.Pernr,dummyPersonData);
         });
-
+        dragscroll.reset();        
     },
     renderTimeline(pernr,data){ 
         // ================================
@@ -92,13 +94,13 @@ let timeLine = {
                     // Add order number text
                     let OrderNumberText = document.createElement('div');
                     OrderNumberText.innerText = `${el.OrderNumber} / ${('0' + el.Piece).slice(-2)}`;
-                    // If action element is too small hide the order number
+                    // If action element is too small hide the order number label
                     if(actionTimespan*sizeOfOneSecOnTimeLine < this.minWidthToDisplayOrderNumber)
                     {
                         OrderNumberText.style.setProperty('display','none');
                     }
                     element.appendChild(OrderNumberText);
-
+                    // Apped order to the correct row
                     if(el.Index === 0){
                         document.querySelector(`.row[data-pernr="${pernr}"] .pos-0`).appendChild(element);
                     }
@@ -121,12 +123,23 @@ let timeLine = {
 
             // Size of one second on a timeline in Px            
             let sizeOfOneSecOnTimeLine = (60.0 / (document.querySelector(`.row[data-pernr="${pernr}"] .tail div`).getBoundingClientRect().width));
-            // Time offset defined by scroll
+        // Time offset defined by scroll
             let movedMinutes = (el.scrollLeft * sizeOfOneSecOnTimeLine)*60;
-            // Add moved time offset to the begining of the redered time        
-            let scrolledDate = new Date((TimelineBeginingDate.getTime()) + movedMinutes *1000);
-            // Override new timestamp
-            document.querySelector(`.row[data-pernr="${pernr}"] .pointer-text`).innerText = `${scrolledDate.getDay()}.${scrolledDate.getMonth()} ${scrolledDate.getHours()}:${scrolledDate.getMinutes()}`;
+            // calculate offset from the start of the row to the middle
+            let offset = (document.querySelector(`.row[data-pernr="${pernr}"] .head`).getBoundingClientRect().width /2)*sizeOfOneSecOnTimeLine *60;
+            // Add moved time and offset to the begining of the rendered time
+            let scrolledDate = new Date((TimelineBeginingDate.getTime() + offset *1000) + movedMinutes *1000);
+            // Format datetime
+            const formatter = new Intl.DateTimeFormat('cs-CZ',{
+                weekday: 'short',
+                month: 'numeric',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric'
+            });
+            const [{ value: shortDay },,{ value: day },,{ value: month },,{value: hour},,{value:minute}] = formatter.formatToParts(scrolledDate);
+            // Override new timestamp label
+            document.querySelector(`.row[data-pernr="${pernr}"] .pointer-text`).innerText = `${capitalizeFLetter(shortDay)} ${day}.${month}. ${hour}:${minute}`;
         });
     },
     returnRow(data){
@@ -167,6 +180,24 @@ let timeLine = {
             </div>            
         </div>
         `
+    },
+    setUpControlls(){
+        let el = document.getElementById('controll');
+        el.querySelector('.percentage').innerText = `${((12.5)* this.hoursOnScreen)} %`
+        el.querySelector('.plus').addEventListener('click',() =>{
+            if(this.hoursOnScreen > 1){
+                this.hoursOnScreen -= 1;
+                this.renderWhole();
+                document.querySelector('.percentage').innerText = `${((12.5)* this.hoursOnScreen)} %`
+            }            
+        });
+        el.querySelector('.minus').addEventListener('click',() =>{
+            if(this.hoursOnScreen < 8){
+                this.hoursOnScreen += 1;
+                this.renderWhole();
+                document.querySelector('.percentage').innerText = `${((12.5)* this.hoursOnScreen)} %`
+            }
+        });     
     }
 }
 
@@ -176,11 +207,11 @@ TimelineBeginingDate.setDate(inputDate.getDate()-Math.floor(timeLine.daysRendere
 
 
 // Set css properties
-document.documentElement.style.setProperty('--hours-on-screen',timeLine.hoursOnScreen);
 document.documentElement.style.setProperty('--daysRendered',timeLine.daysRendered);
 
 // Run render
-timeLine.renderRows();
+timeLine.renderWhole();
+timeLine.setUpControlls();
 
 // // Set arrow scrolling events
 // let lastScroll;
@@ -209,3 +240,9 @@ window.addEventListener("resize",() => {
     timeLine.renderRows();
     console.log("resize");
 });
+
+// Help functions
+function capitalizeFLetter(word) { 
+    var string = word;
+    return string.replace(/^./, string[0].toUpperCase()); 
+};
