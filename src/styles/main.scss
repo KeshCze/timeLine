@@ -3,6 +3,7 @@
 // ================================
 *,*::before,*::after{
     box-sizing: border-box;
+    font-family: 'Open Sans',sans-serif;
 }
 
 :root{
@@ -144,7 +145,7 @@ h1,h2,h3,h4{
                     position: absolute;                    
                     height: .7em;
                     top: .44em;
-                    div{
+                    div.relative-part{
                         align-items: center;
                         justify-content: center;
                         width: 100%;
@@ -153,7 +154,7 @@ h1,h2,h3,h4{
                         cursor: help;
                         position: relative;
                         
-                        div.tooltip-order-text{
+                        div.order-text{
                             font-size: .4em;
                             height: auto;
                             font-family: 'Open Sans',sans-serif;
@@ -163,23 +164,56 @@ h1,h2,h3,h4{
 
                         .tooltip{
                             position: absolute;
-                            width: 3em;
-                            height: 2.5em;
+                            width: 15em;
+                            height: 7em;
                             font-size: .4em;
-                            top: .1em;
+                            top: .5em;
+                            background-color: #295F45;
+                            z-index: 100;
+                            color: #F3F4F7;                            
+
+                            h4{
+                                margin: .7em;
+                                font-weight: 300;
+                            }
+
+                            hr{
+                                width: 90%;
+                                margin: auto;
+                                position: relative;
+                                top:unset;
+                                margin: 0 auto;
+                            }
+
+                            span{
+                                font-size: .8em;
+                                margin: 0 0 .2em 0;
+                            }
+                        }
+                        .tool-pause{
+                            background-image: linear-gradient(to right top, #624d17, #685115, #6e5413, #745811, #7a5c0e);
                         }
                     }
                 }                
             }
 
             .pause > div{
-                background-image: linear-gradient(to right top, #624d17, #685115, #6e5413, #745811, #7a5c0e);
+                background-image: linear-gradient(to right top, #781e4b, #721e47, #6b1d44, #651d40, #5f1c3d);
+                &:hover{
+                    background-image: linear-gradient(to right top, #591939, #78204b, #5f2140, #72284c, #85114a);
+                }
             }
             .login > div{
                 background-image: linear-gradient(to right top, #178322, #398822, #508d24, #639127, #75962c);
+                &:hover{
+                    background-image: linear-gradient(to right top, #125f1a, #40842c, #568f2e, #77be1b, #73942b);
+                }
             }
             .pos-0 > div,.pos-1 > div{
-                background-image: linear-gradient(to right top, #25228b, #1f1d92, #191699, #110da0, #0500a6);
+                background-image: linear-gradient(to right top, #2387aa, #1380ab, #0b78ac, #1471ac, #2368aa);
+                &:hover{
+                    background-image: linear-gradient(to right top, #00b8f8, #0499d3, #0991d1, #1471ac, #095cab);
+                }
             }
             
         }

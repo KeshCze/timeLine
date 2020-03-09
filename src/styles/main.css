@@ -1,6 +1,7 @@
 *, *::before, *::after {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: 'Open Sans',sans-serif;
 }
 
 :root {
@@ -143,7 +144,7 @@ h1, h2, h3, h4 {
   top: .44em;
 }
 
-.row .head .lines .line-wrap > div div {
+.row .head .lines .line-wrap > div div.relative-part {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -159,7 +160,7 @@ h1, h2, h3, h4 {
   position: relative;
 }
 
-.row .head .lines .line-wrap > div div div.tooltip-order-text {
+.row .head .lines .line-wrap > div div.relative-part div.order-text {
   font-size: .4em;
   height: auto;
   font-family: 'Open Sans',sans-serif;
@@ -167,17 +168,48 @@ h1, h2, h3, h4 {
   color: #F3F4F7;
 }
 
-.row .head .lines .line-wrap > div div .tooltip {
+.row .head .lines .line-wrap > div div.relative-part .tooltip {
   position: absolute;
-  width: 3em;
-  height: 2.5em;
+  width: 15em;
+  height: 7em;
   font-size: .4em;
-  top: .1em;
+  top: .5em;
+  background-color: #295F45;
+  z-index: 100;
+  color: #F3F4F7;
+}
+
+.row .head .lines .line-wrap > div div.relative-part .tooltip h4 {
+  margin: .7em;
+  font-weight: 300;
+}
+
+.row .head .lines .line-wrap > div div.relative-part .tooltip hr {
+  width: 90%;
+  margin: auto;
+  position: relative;
+  top: unset;
+  margin: 0 auto;
+}
+
+.row .head .lines .line-wrap > div div.relative-part .tooltip span {
+  font-size: .8em;
+  margin: 0 0 .2em 0;
+}
+
+.row .head .lines .line-wrap > div div.relative-part .tool-pause {
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#624d17), color-stop(#685115), color-stop(#6e5413), color-stop(#745811), to(#7a5c0e));
+  background-image: linear-gradient(to right top, #624d17, #685115, #6e5413, #745811, #7a5c0e);
 }
 
 .row .head .lines .pause > div {
-  background-image: -webkit-gradient(linear, left bottom, right top, from(#624d17), color-stop(#685115), color-stop(#6e5413), color-stop(#745811), to(#7a5c0e));
-  background-image: linear-gradient(to right top, #624d17, #685115, #6e5413, #745811, #7a5c0e);
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#781e4b), color-stop(#721e47), color-stop(#6b1d44), color-stop(#651d40), to(#5f1c3d));
+  background-image: linear-gradient(to right top, #781e4b, #721e47, #6b1d44, #651d40, #5f1c3d);
+}
+
+.row .head .lines .pause > div:hover {
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#591939), color-stop(#78204b), color-stop(#5f2140), color-stop(#72284c), to(#85114a));
+  background-image: linear-gradient(to right top, #591939, #78204b, #5f2140, #72284c, #85114a);
 }
 
 .row .head .lines .login > div {
@@ -185,9 +217,19 @@ h1, h2, h3, h4 {
   background-image: linear-gradient(to right top, #178322, #398822, #508d24, #639127, #75962c);
 }
 
+.row .head .lines .login > div:hover {
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#125f1a), color-stop(#40842c), color-stop(#568f2e), color-stop(#77be1b), to(#73942b));
+  background-image: linear-gradient(to right top, #125f1a, #40842c, #568f2e, #77be1b, #73942b);
+}
+
 .row .head .lines .pos-0 > div, .row .head .lines .pos-1 > div {
-  background-image: -webkit-gradient(linear, left bottom, right top, from(#25228b), color-stop(#1f1d92), color-stop(#191699), color-stop(#110da0), to(#0500a6));
-  background-image: linear-gradient(to right top, #25228b, #1f1d92, #191699, #110da0, #0500a6);
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#2387aa), color-stop(#1380ab), color-stop(#0b78ac), color-stop(#1471ac), to(#2368aa));
+  background-image: linear-gradient(to right top, #2387aa, #1380ab, #0b78ac, #1471ac, #2368aa);
+}
+
+.row .head .lines .pos-0 > div:hover, .row .head .lines .pos-1 > div:hover {
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#00b8f8), color-stop(#0499d3), color-stop(#0991d1), color-stop(#1471ac), to(#095cab));
+  background-image: linear-gradient(to right top, #00b8f8, #0499d3, #0991d1, #1471ac, #095cab);
 }
 
 .row .head::-webkit-scrollbar {

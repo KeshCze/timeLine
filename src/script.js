@@ -5,14 +5,14 @@ let dataPeople =[
 
 
 let dummyPersonData = [
-    {Id: 0,Action : 301, ValidFrom : "January 27, 2020 11:00:00", ValidTo : "January 27, 2020 18:00:00", Pernr : "11111111", Name : "Lukáš Babinec"},
-    {Id: 1,Action : 500, ValidFrom : "January 27, 2020 11:00:00", ValidTo : "January 27, 2020 11:30:00", Pernr : "11111111", Name : "Lukáš Babinec"},
-    {Id: 2,Action : 500, ValidFrom : "January 27, 2020 14:00:00", ValidTo : "January 27, 2020 14:30:00", Pernr : "11111111", Name : "Lukáš Babinec"},
-    {Id: 3,Action : 304, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Pernr : "11111111", Name : "Lukáš Babinec"},
-    {Id: 4,Action : 402, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Index : 0,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1"},
-    {Id: 5,Action : 402, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Index : 1,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1"},
-    {Id: 6,Action : 402, ValidFrom : "January 27, 2020 13:35:00", ValidTo : "January 27, 2020 13:50:00", Index : 1,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1"},
-    {Id: 7,Action : 402, ValidFrom : "January 27, 2020 16:35:00", ValidTo : "January 27, 2020 16:50:00", Index : 1,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1"},        
+    {Id: 0,Action : 301, ValidFrom : "January 27, 2020 11:00:00", ValidTo : "January 27, 2020 18:00:00", Pernr : "11111111", Name : "Lukáš Babinec", Reason: null},
+    {Id: 1,Action : 500, ValidFrom : "January 27, 2020 11:00:00", ValidTo : "January 27, 2020 11:30:00", Pernr : "11111111", Name : "Lukáš Babinec", Reason: 515},
+    {Id: 2,Action : 500, ValidFrom : "January 27, 2020 14:00:00", ValidTo : "January 27, 2020 14:30:00", Pernr : "11111111", Name : "Lukáš Babinec", Reason: 516},
+    {Id: 3,Action : 304, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Pernr : "11111111", Name : "Lukáš Babinec", Reason: null},
+    {Id: 4,Action : 402, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Index : 0,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1", Reason: null},
+    {Id: 5,Action : 402, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Index : 1,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1", Reason: null},
+    {Id: 6,Action : 402, ValidFrom : "January 27, 2020 13:35:00", ValidTo : "January 27, 2020 13:50:00", Index : 1,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1", Reason: null},
+    {Id: 7,Action : 402, ValidFrom : "January 27, 2020 16:35:00", ValidTo : "January 27, 2020 16:50:00", Index : 1,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1", Reason: null},        
 ];
 
 
@@ -86,6 +86,7 @@ let timeLine = {
 
             // Add id reference to the dataset record
             let subElement = document.createElement('div');
+            subElement.classList.add('relative-part');
             subElement.dataset.id = el.Id;
             
             // Determine to which line to put the action log
@@ -101,7 +102,7 @@ let timeLine = {
                     break;
                 case 402:
                     let OrderNumberText = document.createElement('div');
-                    OrderNumberText.classList.add('tooltip-order-text');
+                    OrderNumberText.classList.add('order-text');
                     // Add order number text
                     OrderNumberText.innerText = `${el.OrderNumber} / ${('0' + el.Piece).slice(-2)}`;
                     // If action element is too small hide the order number label
@@ -204,10 +205,53 @@ let timeLine = {
         `
     },
     templateTooltip301(dataRecord){
+        // Format datetime
+        const formatter = new Intl.DateTimeFormat('cs-CZ',{
+            weekday: 'short',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric'
+        });
+        const [{ value: shortDay },,{ value: day },,{ value: month },,{value: hour},,{value:minute}] = formatter.formatToParts(new Date(dataRecord.ValidFrom));
+        const [{ value: shortDay1 },,{ value: day1 },,{ value: month1 },,{value: hour1},,{value:minute1}] = formatter.formatToParts(new Date(dataRecord.ValidTo));
         return`
-        <div class="tooltip">
+        <div class="tooltip tool-login">
             <h4>Uživatel přihlášen</h4>
-            <div>${dataRecord.ValidFrom} - ${dataRecord.ValidTo}</div>
+            <hr>
+            <span>${capitalizeFLetter(shortDay)} ${day}.${month}. ${hour}:${minute} - ${capitalizeFLetter(shortDay1)} ${day1}.${month1}. ${hour1}:${minute1}</span>
+        </div>
+        `;
+    },
+    templateTooltip500(dataRecord){
+        // Format datetime
+        const formatter = new Intl.DateTimeFormat('cs-CZ',{
+            weekday: 'short',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric'
+        });
+        const [{ value: shortDay },,{ value: day },,{ value: month },,{value: hour},,{value:minute}] = formatter.formatToParts(new Date(dataRecord.ValidFrom));
+        const [{ value: shortDay1 },,{ value: day1 },,{ value: month1 },,{value: hour1},,{value:minute1}] = formatter.formatToParts(new Date(dataRecord.ValidTo));
+        let reasonText;
+        switch (dataRecord.Reason) {
+            case 515:
+                reasonText = 'Osobní pauza';
+                break;
+            case 516:
+                reasonText = 'Uklízení';
+                break;
+            default:
+                console.error("Non-existing reason",dataRecord);
+                break;
+        }
+        return`
+        <div class="tooltip tool-pause">
+            <h4>Uživatel na pauze</h4>
+            <hr>
+            <span>${capitalizeFLetter(shortDay)} ${day}.${month}. ${hour}:${minute} - ${capitalizeFLetter(shortDay1)} ${day1}.${month1}. ${hour1}:${minute1}</span>
+            <div>Druh pauzy: ${reasonText}</div>
         </div>
         `;
     },
@@ -230,6 +274,7 @@ let timeLine = {
         });     
     },
     showToolTip(id){
+        document.querySelector('.tooltip')?.remove();
         id = Number(id);
         let dataRecord = dummyPersonData.find(x => x.Id === id);
         let template;
@@ -237,9 +282,12 @@ let timeLine = {
             case 301:
                 template = this.templateTooltip301(dataRecord);
                 break;
-        
+            case 500:
+                template = this.templateTooltip500(dataRecord);
+                break;
             default:
-                console.error("Non-existing tootip template",id,dataRecord);
+                console.error("Non-existing tooltip template",id,dataRecord);
+                template= ''
                 break;
         }
 
