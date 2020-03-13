@@ -5,14 +5,14 @@ let dataPeople =[
 
 
 let dummyPersonData = [
-    {Id: 0,Action : 301, ValidFrom : "January 27, 2020 11:00:00", ValidTo : "January 27, 2020 18:00:00", Pernr : "11111111", Name : "Lukáš Babinec", Reason: null},
-    {Id: 1,Action : 500, ValidFrom : "January 27, 2020 11:00:00", ValidTo : "January 27, 2020 11:30:00", Pernr : "11111111", Name : "Lukáš Babinec", Reason: 515},
-    {Id: 2,Action : 500, ValidFrom : "January 27, 2020 14:00:00", ValidTo : "January 27, 2020 14:30:00", Pernr : "11111111", Name : "Lukáš Babinec", Reason: 516},
-    {Id: 3,Action : 304, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Pernr : "11111111", Name : "Lukáš Babinec", Reason: null},
-    {Id: 4,Action : 402, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Index : 0,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1", Reason: null},
-    {Id: 5,Action : 402, ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Index : 1,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1", Reason: null},
-    {Id: 6,Action : 402, ValidFrom : "January 27, 2020 13:35:00", ValidTo : "January 27, 2020 13:50:00", Index : 1,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1", Reason: null},
-    {Id: 7,Action : 402, ValidFrom : "January 27, 2020 16:35:00", ValidTo : "January 27, 2020 16:50:00", Index : 1,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1", Reason: null},        
+    {Id: 0,Action : 301,Position:"01",Workplace:"09725-01", ValidFrom : "January 27, 2020 11:00:00", ValidTo : "January 27, 2020 18:00:00", Pernr : "11111111", Name : "Lukáš Babinec", Reason: null},
+    {Id: 1,Action : 500,Position:"01",Workplace:"09725-01", ValidFrom : "January 27, 2020 11:00:00", ValidTo : "January 27, 2020 11:30:00", Pernr : "11111111", Name : "Lukáš Babinec", Reason: 515},
+    {Id: 2,Action : 500,Position:"01",Workplace:"09725-01", ValidFrom : "January 27, 2020 14:00:00", ValidTo : "January 27, 2020 14:30:00", Pernr : "11111111", Name : "Lukáš Babinec", Reason: 516},
+    {Id: 3,Action : 304,Position:"01",Workplace:"09725-01", ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Pernr : "11111111", Name : "Lukáš Babinec", Reason: null},
+    {Id: 4,Action : 402,Position:"01",Workplace:"09725-01", ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Index : 0,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "1", Reason: null, Quantity: 1},
+    {Id: 5,Action : 402,Position:"01",Workplace:"09725-01", ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Index : 1,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "2", Reason: null, Quantity: 2},
+    {Id: 6,Action : 402,Position:"01",Workplace:"09725-01", ValidFrom : "January 27, 2020 13:35:00", ValidTo : "January 27, 2020 13:50:00", Index : 1,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "3", Reason: null, Quantity: 3},
+    {Id: 7,Action : 402,Position:"01",Workplace:"09725-01", ValidFrom : "January 27, 2020 16:35:00", ValidTo : "January 27, 2020 16:50:00", Index : 1,Pernr : "11111111", Name : "Lukáš Babinec",OrderNumber: "92592490",Piece: "4", Reason: null, Quantity: 4},        
 ];
 
 
@@ -204,6 +204,33 @@ let timeLine = {
         </div>
         `
     },
+    templateTooltip402(dataRecord){
+        // Format datetime
+        const formatter = new Intl.DateTimeFormat('cs-CZ',{
+            weekday: 'short',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric'
+        });
+        const [{ value: shortDay },,{ value: day },,{ value: month },,{value: hour},,{value:minute}] = formatter.formatToParts(new Date(dataRecord.ValidFrom));
+        const [{ value: shortDay1 },,{ value: day1 },,{ value: month1 },,{value: hour1},,{value:minute1}] = formatter.formatToParts(new Date(dataRecord.ValidTo));
+        return`
+        <div class="tooltip tool-res">
+            <h4>Uživatel rezervoval kus</h4>
+            <hr>
+            <span>${capitalizeFLetter(shortDay)} ${day}.${month}. ${hour}:${minute} - ${capitalizeFLetter(shortDay1)} ${day1}.${month1}. ${hour1}:${minute1}</span>
+            <div>
+                <p> 
+                <em>Pozice:</em> ${dataRecord.Position} <br>
+                <em>Pracoviště:</em> ${dataRecord.Workplace} <br>
+                <em>Zakázka:</em> ${dataRecord.OrderNumber} / ${dataRecord.Piece} <br>    
+                <em>Kvantita:</em> ${dataRecord.Quantity}
+                </p>         
+            </div>
+        </div>
+        `;
+    },
     templateTooltip301(dataRecord){
         // Format datetime
         const formatter = new Intl.DateTimeFormat('cs-CZ',{
@@ -251,7 +278,13 @@ let timeLine = {
             <h4>Uživatel na pauze</h4>
             <hr>
             <span>${capitalizeFLetter(shortDay)} ${day}.${month}. ${hour}:${minute} - ${capitalizeFLetter(shortDay1)} ${day1}.${month1}. ${hour1}:${minute1}</span>
-            <div>Druh pauzy: ${reasonText}</div>
+            <div>
+                <p>
+                <em>Pozice:</em> ${dataRecord.Position} <br>
+                <em>Pracoviště:</em> ${dataRecord.Workplace} <br>
+                <em>Druh pauzy:</em> ${reasonText}
+                </p>
+            </div>
         </div>
         `;
     },
@@ -282,6 +315,9 @@ let timeLine = {
             case 301:
                 template = this.templateTooltip301(dataRecord);
                 break;
+            case 402:
+                template = this.templateTooltip402(dataRecord);
+                break;
             case 500:
                 template = this.templateTooltip500(dataRecord);
                 break;
@@ -291,7 +327,7 @@ let timeLine = {
                 break;
         }
 
-        document.querySelector(`div[data-id="${id}"]`).innerHTML = template;
+        document.querySelector(`div[data-id="${id}"]`).innerHTML += template;
     }
 }
 
@@ -331,7 +367,7 @@ timeLine.setUpControlls();
 
 // On resize re-render event
 window.addEventListener("resize",() => {
-    timeLine.renderRows();
+    timeLine.renderWhole();
     console.log("resize");
 });
 

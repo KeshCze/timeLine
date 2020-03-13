@@ -171,17 +171,24 @@ h1, h2, h3, h4 {
 .row .head .lines .line-wrap > div div.relative-part .tooltip {
   position: absolute;
   width: 15em;
-  height: 7em;
+  height: 6em;
   font-size: .4em;
   top: .5em;
-  background-color: #295F45;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2d3644), color-stop(40%, #363f4f), color-stop(150%, #313948)), -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0.4)), color-stop(200%, rgba(0, 0, 0, 0.25)));
+  background: linear-gradient(to bottom, #2d3644 0%, #363f4f 40%, #313948 150%), linear-gradient(to top, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0.25) 200%);
+  background-blend-mode: multiply;
   z-index: 100;
   color: #F3F4F7;
+  -webkit-box-shadow: 4px 4px 10px 1px rgba(0, 0, 0, 0.32);
+  box-shadow: 4px 4px 10px 1px rgba(0, 0, 0, 0.32);
+  border-radius: 7%;
 }
 
 .row .head .lines .line-wrap > div div.relative-part .tooltip h4 {
   margin: .7em;
   font-weight: 300;
+  font-size: 1.2em;
+  margin-bottom: .4em;
 }
 
 .row .head .lines .line-wrap > div div.relative-part .tooltip hr {
@@ -190,16 +197,30 @@ h1, h2, h3, h4 {
   position: relative;
   top: unset;
   margin: 0 auto;
+  border-color: #F3F4F7;
+  background-color: #F3F4F7;
 }
 
 .row .head .lines .line-wrap > div div.relative-part .tooltip span {
   font-size: .8em;
-  margin: 0 0 .2em 0;
+}
+
+.row .head .lines .line-wrap > div div.relative-part .tooltip p {
+  text-align: start;
+  padding-left: 4%;
+}
+
+.row .head .lines .line-wrap > div div.relative-part .tooltip p em {
+  font-size: .8em;
+  color: #a0a4a5;
 }
 
 .row .head .lines .line-wrap > div div.relative-part .tool-pause {
-  background-image: -webkit-gradient(linear, left bottom, right top, from(#624d17), color-stop(#685115), color-stop(#6e5413), color-stop(#745811), to(#7a5c0e));
-  background-image: linear-gradient(to right top, #624d17, #685115, #6e5413, #745811, #7a5c0e);
+  height: 10em;
+}
+
+.row .head .lines .line-wrap > div div.relative-part .tool-res {
+  height: 11em;
 }
 
 .row .head .lines .pause > div {
