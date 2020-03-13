@@ -132,7 +132,7 @@ let timeLine = {
                     
             // Click event
             subElement.addEventListener('click',(el) => {
-                this.showToolTip(el.currentTarget.dataset.id);
+                this.showToolTip(el.currentTarget.dataset.id,el);
             });
             
         });
@@ -306,9 +306,11 @@ let timeLine = {
             }
         });     
     },
-    showToolTip(id){
+    showToolTip(id,event){
+        // Remove all displayed tooltips
         document.querySelector('.tooltip')?.remove();
         id = Number(id);
+        // Find the record based on action id
         let dataRecord = dummyPersonData.find(x => x.Id === id);
         let template;
         switch (dataRecord.Action) {
@@ -328,6 +330,10 @@ let timeLine = {
         }
 
         document.querySelector(`div[data-id="${id}"]`).innerHTML += template;
+        // Offset the tooltip
+        let timelineActionElWidth = document.querySelector(`div[data-id="${id}"]`).getBoundingClientRect().width;
+        let tooltipLeftOffset = event.offsetX;
+        document.querySelector('.tooltip').style.setProperty("left",`${tooltipLeftOffset}px`);
     }
 }
 
