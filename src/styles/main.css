@@ -171,13 +171,13 @@ h1, h2, h3, h4 {
 .row .head .lines .line-wrap > div div.relative-part .tooltip {
   position: absolute;
   width: 15em;
+  z-index: 2000;
   height: 6em;
   font-size: .4em;
   top: .5em;
   background: -webkit-gradient(linear, left top, left bottom, from(#2d3644), color-stop(40%, #363f4f), color-stop(150%, #313948)), -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0.4)), color-stop(200%, rgba(0, 0, 0, 0.25)));
   background: linear-gradient(to bottom, #2d3644 0%, #363f4f 40%, #313948 150%), linear-gradient(to top, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0.25) 200%);
   background-blend-mode: multiply;
-  z-index: 100;
   color: #F3F4F7;
   -webkit-box-shadow: 4px 4px 10px 1px rgba(0, 0, 0, 0.32);
   box-shadow: 4px 4px 10px 1px rgba(0, 0, 0, 0.32);
@@ -227,6 +227,10 @@ h1, h2, h3, h4 {
   height: 11em;
 }
 
+.row .head .lines .line-wrap > div div.relative-part .tool-operation {
+  height: 12.5em;
+}
+
 .row .head .lines .line-wrap > div div.relative-part .tool-workplace {
   top: -8.2em;
   height: 9em;
@@ -253,7 +257,7 @@ h1, h2, h3, h4 {
 }
 
 .row .head .lines .login div.workplace-login {
-  z-index: 90;
+  z-index: 9;
   background-image: -webkit-gradient(linear, left bottom, right top, from(#7e8e2f), color-stop(#7d8d32), color-stop(#7b8c35), color-stop(#7a8a37), color-stop(#79893a), color-stop(#778838), color-stop(#768737), color-stop(#748635), color-stop(#72852f), color-stop(#708528), color-stop(#6e8420), to(#6c8317));
   background-image: linear-gradient(to right top, #7e8e2f, #7d8d32, #7b8c35, #7a8a37, #79893a, #778838, #768737, #748635, #72852f, #708528, #6e8420, #6c8317);
 }
@@ -271,6 +275,17 @@ h1, h2, h3, h4 {
 .row .head .lines .pos-0 > div:hover, .row .head .lines .pos-1 > div:hover {
   background-image: -webkit-gradient(linear, left bottom, right top, from(#00b8f8), color-stop(#0499d3), color-stop(#0991d1), color-stop(#1471ac), to(#095cab));
   background-image: linear-gradient(to right top, #00b8f8, #0499d3, #0991d1, #1471ac, #095cab);
+}
+
+.row .head .lines .pos-0 div.operation, .row .head .lines .pos-1 div.operation {
+  z-index: 912;
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#2334aa), color-stop(#1362ab), color-stop(#0b53ac), color-stop(#1458ac), to(#28547d));
+  background-image: linear-gradient(to right top, #2334aa, #1362ab, #0b53ac, #1458ac, #28547d);
+}
+
+.row .head .lines .pos-0 div.operation:hover, .row .head .lines .pos-1 div.operation:hover {
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#434fa8), color-stop(#2d70ae), color-stop(#2c68b2), color-stop(#2968b6), to(#28547d));
+  background-image: linear-gradient(to right top, #434fa8, #2d70ae, #2c68b2, #2968b6, #28547d);
 }
 
 .row .head::-webkit-scrollbar {
