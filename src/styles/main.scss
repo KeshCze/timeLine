@@ -207,12 +207,21 @@ h1,h2,h3,h4{
                             }
 
                         }
+                        .too-login{
+                            top:-3.2em;
+                        }
+
                         .tool-pause{                            
                             height:10em;
                         }
 
                         .tool-res{
                             height: 11em;
+                        }
+
+                        .tool-workplace{
+                            top:-8.2em;
+                            height: 9em;
                         }
                     }
                 }                
@@ -228,6 +237,14 @@ h1,h2,h3,h4{
                 background-image: linear-gradient(to right top, #178322, #398822, #508d24, #639127, #75962c);
                 &:hover{
                     background-image: linear-gradient(to right top, #125f1a, #40842c, #568f2e, #77be1b, #73942b);
+                }
+            }            
+            .login div.workplace-login
+            {                
+                z-index: 90;
+                background-image: linear-gradient(to right top, #7e8e2f, #7d8d32, #7b8c35, #7a8a37, #79893a, #778838, #768737, #748635, #72852f, #708528, #6e8420, #6c8317);
+                &:hover{
+                    background-image: linear-gradient(to right top, #99a94c, #7d8d32, #7b8c35, #7a8a37, #79893a, #8e9e54, #768737, #748635, #72852f, #708528, #6e8420, #87a220);
                 }
             }
             .pos-0 > div,.pos-1 > div{

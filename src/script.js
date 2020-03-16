@@ -6,6 +6,7 @@ let dataPeople =[
 
 let dummyPersonData = [
     {Id: 0,Action : 301,Position:"01",Workplace:"09725-01", ValidFrom : "January 27, 2020 11:00:00", ValidTo : "January 27, 2020 18:00:00", Pernr : "11111111", Name : "Lukáš Babinec", Reason: null},
+    {Id: 8,Action : 310,Position:"01",Workplace:"09725-01", ValidFrom : "January 27, 2020 11:30:00", ValidTo : "January 27, 2020 17:00:00", Pernr : "11111111", Name : "Lukáš Babinec", Reason: null},
     {Id: 1,Action : 500,Position:"01",Workplace:"09725-01", ValidFrom : "January 27, 2020 11:00:00", ValidTo : "January 27, 2020 11:30:00", Pernr : "11111111", Name : "Lukáš Babinec", Reason: 515},
     {Id: 2,Action : 500,Position:"01",Workplace:"09725-01", ValidFrom : "January 27, 2020 14:00:00", ValidTo : "January 27, 2020 14:30:00", Pernr : "11111111", Name : "Lukáš Babinec", Reason: 516},
     {Id: 3,Action : 304,Position:"01",Workplace:"09725-01", ValidFrom : "January 27, 2020 11:35:00", ValidTo : "January 27, 2020 11:39:00", Pernr : "11111111", Name : "Lukáš Babinec", Reason: null},
@@ -95,6 +96,11 @@ let timeLine = {
                     element.appendChild(subElement); 
                     document.querySelector(`.row[data-pernr="${pernr}"] .login`).appendChild(element);                                
                     break;
+                case 310:
+                    element.appendChild(subElement);
+                    element.classList.add('workplace-login');
+                    document.querySelector(`.row[data-pernr="${pernr}"] .login`).appendChild(element);                                
+                    break;
                 case 304:
                 case 500:
                     element.appendChild(subElement); 
@@ -116,7 +122,6 @@ let timeLine = {
 
                     // Apped order to the correct row
                     if(el.Index === 0){
-
                         document.querySelector(`.row[data-pernr="${pernr}"] .pos-0`).appendChild(element);
                     }
                     else{
@@ -250,6 +255,31 @@ let timeLine = {
         </div>
         `;
     },
+    templateTooltip310(dataRecord){
+        // Format datetime
+        const formatter = new Intl.DateTimeFormat('cs-CZ',{
+            weekday: 'short',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric'
+        });
+        const [{ value: shortDay },,{ value: day },,{ value: month },,{value: hour},,{value:minute}] = formatter.formatToParts(new Date(dataRecord.ValidFrom));
+        const [{ value: shortDay1 },,{ value: day1 },,{ value: month1 },,{value: hour1},,{value:minute1}] = formatter.formatToParts(new Date(dataRecord.ValidTo));
+        return`
+        <div class="tooltip tool-workplace">
+            <h4>Uživatel na pracovišti</h4>
+            <hr>
+            <span>${capitalizeFLetter(shortDay)} ${day}.${month}. ${hour}:${minute} - ${capitalizeFLetter(shortDay1)} ${day1}.${month1}. ${hour1}:${minute1}</span>
+            <div>
+            <p>
+            <em>Pozice:</em> ${dataRecord.Position} <br>
+            <em>Pracoviště:</em> ${dataRecord.Workplace} <br>
+            </p>
+            </div>
+        </div>
+        `;
+    },
     templateTooltip500(dataRecord){
         // Format datetime
         const formatter = new Intl.DateTimeFormat('cs-CZ',{
@@ -323,6 +353,9 @@ let timeLine = {
             case 500:
                 template = this.templateTooltip500(dataRecord);
                 break;
+            case 310:
+                template = this.templateTooltip310(dataRecord);
+                break;
             default:
                 console.error("Non-existing tooltip template",id,dataRecord);
                 template= ''
@@ -333,7 +366,7 @@ let timeLine = {
         // Offset the tooltip
         let timelineActionElWidth = document.querySelector(`div[data-id="${id}"]`).getBoundingClientRect().width;
         let tooltipLeftOffset = event.offsetX;
-        document.querySelector('.tooltip').style.setProperty("left",`${tooltipLeftOffset}px`);
+        document.querySelector('.tooltip')?.style.setProperty("left",`${tooltipLeftOffset}px`);
     }
 }
 

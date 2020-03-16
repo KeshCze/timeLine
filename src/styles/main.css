@@ -215,12 +215,21 @@ h1, h2, h3, h4 {
   color: #a0a4a5;
 }
 
+.row .head .lines .line-wrap > div div.relative-part .too-login {
+  top: -3.2em;
+}
+
 .row .head .lines .line-wrap > div div.relative-part .tool-pause {
   height: 10em;
 }
 
 .row .head .lines .line-wrap > div div.relative-part .tool-res {
   height: 11em;
+}
+
+.row .head .lines .line-wrap > div div.relative-part .tool-workplace {
+  top: -8.2em;
+  height: 9em;
 }
 
 .row .head .lines .pause > div {
@@ -241,6 +250,17 @@ h1, h2, h3, h4 {
 .row .head .lines .login > div:hover {
   background-image: -webkit-gradient(linear, left bottom, right top, from(#125f1a), color-stop(#40842c), color-stop(#568f2e), color-stop(#77be1b), to(#73942b));
   background-image: linear-gradient(to right top, #125f1a, #40842c, #568f2e, #77be1b, #73942b);
+}
+
+.row .head .lines .login div.workplace-login {
+  z-index: 90;
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#7e8e2f), color-stop(#7d8d32), color-stop(#7b8c35), color-stop(#7a8a37), color-stop(#79893a), color-stop(#778838), color-stop(#768737), color-stop(#748635), color-stop(#72852f), color-stop(#708528), color-stop(#6e8420), to(#6c8317));
+  background-image: linear-gradient(to right top, #7e8e2f, #7d8d32, #7b8c35, #7a8a37, #79893a, #778838, #768737, #748635, #72852f, #708528, #6e8420, #6c8317);
+}
+
+.row .head .lines .login div.workplace-login:hover {
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#99a94c), color-stop(#7d8d32), color-stop(#7b8c35), color-stop(#7a8a37), color-stop(#79893a), color-stop(#8e9e54), color-stop(#768737), color-stop(#748635), color-stop(#72852f), color-stop(#708528), color-stop(#6e8420), to(#87a220));
+  background-image: linear-gradient(to right top, #99a94c, #7d8d32, #7b8c35, #7a8a37, #79893a, #8e9e54, #768737, #748635, #72852f, #708528, #6e8420, #87a220);
 }
 
 .row .head .lines .pos-0 > div, .row .head .lines .pos-1 > div {
